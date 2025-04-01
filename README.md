@@ -266,5 +266,5 @@ print(response.json())
 
 ## 许可
 
-本项目基于MIT许可协议开源。
+本项目基于Apache-2.0许可协议开源。
 
