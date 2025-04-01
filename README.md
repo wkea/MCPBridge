@@ -49,7 +49,7 @@ cp .env.example .env
 
 ### 本地API服务器设置
 ```
-API_PORT=55451             # 本地服务器端口
+API_PORT=55545             # 本地服务器端口
 API_HOST=127.0.0.1         # 本地服务器IP地址
 API_KEY=your_api_key_here  # 本地API访问密钥，用于验证请求
 REQUEST_MODEL_ID=Seraphina # 本地模型ID，可自定义
@@ -74,9 +74,9 @@ MODEL=deepseek-chat  # 使用的模型
 python api_server.py
 ```
 
-默认情况下，服务器将在配置的端口上运行。服务器启动时会自动初始化MCP服务器和可用工具，无需等待第一个请求到来才进行初始化。您可以通过浏览器访问 `http://127.0.0.1:55451/` 来确认服务器是否正常运行。
+默认情况下，服务器将在配置的端口上运行。服务器启动时会自动初始化MCP服务器和可用工具，无需等待第一个请求到来才进行初始化。您可以通过浏览器访问 `http://127.0.0.1:55545/` 来确认服务器是否正常运行。
 
-您还可以通过访问 `http://127.0.0.1:55451/status` 来查看服务器的当前状态，包括初始化状态、可用工具和模型等信息。
+您还可以通过访问 `http://127.0.0.1:55545/status` 来查看服务器的当前状态，包括初始化状态、可用工具和模型等信息。
 
 ## MCP工具服务器配置
 
@@ -211,7 +211,7 @@ MCPBridge设计为即插即用的解决方案，可以轻松集成到现有的LL
 ### 使用curl发送请求
 
 ```bash
-curl -X POST http://127.0.0.1:55451/v1/chat/completions \
+curl -X POST http://127.0.0.1:55545/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "X-API-Key: your_api_key_here" \
   -d '{
@@ -227,7 +227,7 @@ curl -X POST http://127.0.0.1:55451/v1/chat/completions \
 ```python
 import requests
 
-url = "http://127.0.0.1:55451/v1/chat/completions"
+url = "http://127.0.0.1:55545/v1/chat/completions"
 headers = {
     "Content-Type": "application/json",
     "X-API-Key": "your_api_key_here"
