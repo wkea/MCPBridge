@@ -47,13 +47,37 @@ API_KEY = os.getenv("API_KEY")
 if not API_KEY:
     raise ValueError("API_KEY环境变量未设置")
 
-async def verify_api_key(x_api_key: str = Header(None)):
-    """验证API密钥"""
-    if not x_api_key:
-        raise HTTPException(status_code=401, detail="缺少API密钥")
-    if x_api_key != API_KEY:
+async def verify_api_key(
+    x_api_key: str = Header(None),
+    authorization: str = Header(None)
+):
+    """验证API密钥，同时支持X-API-Key和Authorization Bearer格式
+    
+    Args:
+        x_api_key: X-API-Key请求头
+        authorization: Authorization请求头（Bearer格式）
+        
+    Returns:
+        验证通过的API密钥
+        
+    Raises:
+        HTTPException: 验证失败时抛出异常
+    """
+    # 从Authorization Bearer格式提取API密钥
+    bearer_key = None
+    if authorization and authorization.startswith("Bearer "):
+        bearer_key = authorization.split("Bearer ")[1].strip()
+    
+    # 优先使用X-API-Key，其次使用Bearer Token
+    api_key = x_api_key or bearer_key
+    
+    if not api_key:
+        raise HTTPException(status_code=401, detail="缺少API密钥，请提供X-API-Key或Authorization Bearer")
+    
+    if api_key != API_KEY:
         raise HTTPException(status_code=403, detail="API密钥无效")
-    return x_api_key
+    
+    return api_key
 
 # 模型映射配置
 MODEL_MAPPINGS: Dict[str, Tuple[str, str]] = {}
