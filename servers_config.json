@@ -1,0 +1,25 @@
+{
+  "mcpServers": {
+    "BASE_SSE_SERVER": {
+      "url": "http://localhost:8000/sse",
+      "headers": {
+        "Authorization": "Bearer ${SSE_API_KEY}"
+      },
+      "timeout": 5,
+      "sse_read_timeout": 300
+    },
+    "FILESYSTEM_SERVER": {
+      "name": "server-filesystem",
+      "description": "MCP server for filesystem access\n\n用法: npx @modelcontextprotocol/server-filesystem\nNPM: https://www.npmjs.com/package/@modelcontextprotocol/server-filesystem",
+      "isActive": true,
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\Administrator\\Desktop",
+        "C:\\Users\\Administrator\\Desktop"
+      ]
+    }
+    
+  }
+} 
